@@ -1,12 +1,15 @@
 # Dev 分支推送部署预览
 ## 仅部署 Win 端
-name: Build Dev
+name: 自动部署
 
 on:
   push:
     branches:
       - dev
-      - master
+
+  release:
+    types:
+      - published
 
 jobs:
   release:
@@ -39,8 +42,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       # 上传构建产物
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: 部署到云服务器
+        uses: appleboy/scp-action@v1
         with:
-          name: Home
-          path: dist
+          host: ${{ secrets.USER_HOST }}
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.USER_PASS }}
+          strip_components: 1
+          overwrite: true
+          source: './dist/*'
+          target: /www/wwwroot/home
