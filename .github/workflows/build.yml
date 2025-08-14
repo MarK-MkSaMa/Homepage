@@ -13,9 +13,7 @@ on:
 
 jobs:
   release:
-    name: Build Website
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
     steps:
       # 检出 Git 仓库
       - name: Check out git repository
@@ -25,14 +23,6 @@ jobs:
         uses: actions/setup-node@v4.0.0
         with:
           node-version: "18.x"
-      # 复制环境变量文件
-      - name: Copy .env.example
-        run: |
-          if (-not (Test-Path .env)) {
-            Copy-Item .env.example .env
-          } else {
-            Write-Host ".env file already exists. Skipping the copy step."
-          }
       # 安装项目依赖
       - name: Install Dependencies
         run: npm install
