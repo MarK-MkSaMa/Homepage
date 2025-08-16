@@ -39,6 +39,6 @@ jobs:
           username: ${{ secrets.USER_NAME }}
           password: ${{ secrets.USER_PASS }}
           strip_components: 1
-          overwrite: true
+          remove: true
           source: './dist/*'
           target: /www/wwwroot/home
