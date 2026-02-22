@@ -27,6 +27,8 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install Dependencies
         run: pnpm install
       - name: Build
