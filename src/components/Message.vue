@@ -94,7 +94,6 @@ watch(
     animation: fade 0.5s;
     max-width: 460px;
     .logo-img {
-      border-radius: 50%;
       width: 120px;
     }
     .name {
